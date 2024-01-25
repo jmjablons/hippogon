@@ -5,24 +5,6 @@ import qupath.lib.objects.*
 import qupath.lib.roi.*
 import static qupath.lib.gui.scripting.QPEx.*
 
-/* custom */
-def get_class_all(string_names) {
-  string_names.collect {
-    getPathClass(it)
-  }
-}
-
-def insert_into_hierarchy(name_children, name_parent) {
-  annos = getAnnotationObjects()
-  anno_children = annos.findAll{it.getPathClass() in get_class_all(name_children)}
-  anno_parent = annos.findAll{it.getPathClass() in get_class_all(name_parent)}
-  for(parent in anno_parent) {
-    anno_children.collect {
-      getCurrentHierarchy().addPathObjectBelowParent(parent, it, true)
-    }
-  }
-}
-
 /* values */
 name_class = [
 hippo = 'hippo',
